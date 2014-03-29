@@ -1,11 +1,11 @@
 {
-  "name": "mean",
-  "description": "MEAN - A fullStack javascript framework powered by  MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.1.2",
+  "name": "Gym With Music",
+  "description": "An app to make the Creativity Gym more enjoyable by having a user curated playlist.",
+  "version": "0.0.1",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/linnovate/mean.git"
+    "url": "https://github.com/Rias500/gymwithmusic-node.git"
   },
   "engines": {
     "node": "0.10.x",

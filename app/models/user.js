@@ -15,10 +15,17 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
-    email: String,
-    username: {
+    email: {
         type: String,
         unique: true
+    },
+    admin: {
+        type: Boolean,
+        default: false
+    },
+    banned: {
+        type: Boolean,
+        default: false
     },
     hashed_password: String,
     provider: String,
@@ -60,12 +67,6 @@ UserSchema.path('email').validate(function(email) {
     if (!this.provider) return true;
     return (typeof email === 'string' && email.length > 0);
 }, 'Email cannot be blank');
-
-UserSchema.path('username').validate(function(username) {
-    // If you are authenticating by any of the oauth strategies, don't validate.
-    if (!this.provider) return true;
-    return (typeof username === 'string' && username.length > 0);
-}, 'Username cannot be blank');
 
 UserSchema.path('hashed_password').validate(function(hashed_password) {
     // If you are authenticating by any of the oauth strategies, don't validate.
