@@ -4,7 +4,7 @@
 }
 
 .content {
-    margin-top:70px;
+    margin-top: 40px;
     width:100%
 }
 
@@ -22,4 +22,43 @@ footer {
 
 footer p {
     padding:5px 0 12px 10px
+}
+
+.videopanel
+{
+    max-height: 400px;
+    overflow-x: scroll;
+}
+
+.videos
+{
+    list-style-type: none;
+    padding: 0;
+}
+
+.upvote
+{
+    position: relative;
+    border-radius: 100% 100%;
+    border-width: 0;
+    padding: 10px;
+    top: 10px;
+    right: -10px;
+}
+
+.upvote:hover
+{
+    border-width: 0;
+}
+
+.video .badge
+{
+    position: absolute;
+    right: 8px;
+    top: 50%;
+}
+
+.video p
+{
+    width: 100%;
 }

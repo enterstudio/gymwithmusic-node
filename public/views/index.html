@@ -1,73 +1,111 @@
 <section data-ng-controller="IndexController">
   <div class="row content">
-      <div class="small-0 medium-6 large-8 columns" id="nowplaying">
+      <div class="col-sm-12 col-md-8 col-lg-8" id="nowplaying">
           <section class="video big">
-              <img id="currentImage" src="" />
+              <img id="currentImage" class="img-responsive" src="http://placekitten.com/1000/600" />
               <div class="videobar">
-                  <span id="currentTitle"></span>
-                  <div class="voting" data-ng-show="global.authenticated">
-                      <a class="skipvote" href="#" title="Vote up" data-action="skip">Vote to skip</a>
-                  </div>
+                <p><a href="" data-ng-show="global.authenticated" class="pull-right btn btn-primary">Vote to skip</a></p>
+                <p class="lead">Placeholder title - Placeholder Artist <br /><small class="">toegevoegd door: Rias</small></p>
               </div>
           </section>
-          <span id="skipFeedback" class="label"></span>
-          <section class="addto">
-              <h2>Add to playlist</h2>
-              <h3>Instructies</h3>
-              <p>
-                  Stem jouw favoriete liedje naar de top zodat het begint te spelen.
-              </p>
-                  <form action="/Video/Add" method="post" class="row collapse" data-ng-show="global.authenticated">
-                      <p>Voeg een liedje toe op basis van een Youtube-url:</p>
-                      <div class="small-2 columns">
-                          <span class="prefix">Url:</span>
-                      </div>
-                      <div class="small-8 columns">
-                          <input type="text" name="url" id="url" />
-                          <small class="feedback error">Error</small>
-                      </div>
-                      <div class="small-2 columns">
-                          <input type="submit" class="button postfix" id="btnAddSong" value="Go" />
-                      </div>
-                      <div class="small-2 columns" id="loading" style="text-align: right;">
-                          <img src="~/Assets/img/loading.gif" />
-                      </div>
-                  </form>
-                  
-                  <form action="" method="post" class="row collapse">
-                      <br /><br /><p>Of zoek op Youtube: </p>
-                      <div class="small-2 columns">
-                          <span class="prefix">Zoek:</span>
-                      </div>
-                      <div class="small-8 columns">
-                          <input type="text" name="zoek" id="txtZoek" />
-                      </div>
-                      <div class="small-2 columns">
-                          <input type="submit" class="button postfix" id="btnZoek" value="Zoek" />
-                      </div>
-                      <div class="small-12 columns">
-                          <br /><br />
-                          <ul id="zoekresultaten">
-                              
-                          </ul>
-                      </div>
-                  </form>
-                  <p data-ng-hide="global.authenticated"><a href="user/login/">Log in</a> to add items.</p>
-          </section>
       </div>
-
-      <div class="small-12 medium-6 large-4 columns" id="queue">
-          <section>
-              <h3>Up next:</h3>
-          </section>
-          <ul class="videos">
-              <li class="video small">
-                  <div class="videobar">
-                      <span>Loading...</span>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Up next</h3>
+          </div>
+          <div class="panel-body videopanel">
+            <ul class="videos">
+              <li class="video">
+                <div class="row no-gutter">
+                  <div class="col-xs-4">
+                    <img src="http://placekitten.com/100/70">  
                   </div>
+                  <div class="col-xs-7 col-xs-offset-1">
+                    <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary"></span>
+                    <span class="badge">42</span>
+                    <p>Placeholder title<br />Placeholder artist</p>
+                    <small>toegevoegd door: Rias</small>
+                  </div>
+                </div>
               </li>
-          </ul>
+              <hr>
+              <li class="video">
+                <div class="row no-gutter">
+                  <div class="col-xs-4">
+                    <img src="http://placekitten.com/100/70">  
+                  </div>
+                  <div class="col-xs-7 col-xs-offset-1">
+                    <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary"></span>
+                    <span class="badge">42</span>
+                    <p>Placeholder title<br />Placeholder artist</p>
+                    <small>toegevoegd door: Rias</small>
+                  </div>
+                </div>
+              </li>
+              <hr>
+              <li class="video">
+                <div class="row no-gutter">
+                  <div class="col-xs-4">
+                    <img src="http://placekitten.com/100/70">  
+                  </div>
+                  <div class="col-xs-7 col-xs-offset-1">
+                    <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary"></span>
+                    <span class="badge">42</span>
+                    <p>Placeholder title<br />Placeholder artist</p>
+                    <small>toegevoegd door: Rias</small>
+                  </div>
+                </div>
+              </li>
+              <hr>
+              <li class="video">
+                <div class="row no-gutter">
+                  <div class="col-xs-4">
+                    <img src="http://placekitten.com/100/70">  
+                  </div>
+                  <div class="col-xs-7 col-xs-offset-1">
+                    <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary"></span>
+                    <span class="badge">42</span>
+                    <p>Placeholder title<br />Placeholder artist</p>
+                    <small>toegevoegd door: Rias</small>
+                  </div>
+                </div>
+              </li>
+              <hr>
+            </ul>
+          </div>
+        </div>  
       </div>
+      <hr>
+      <section class="col-xs-12">
+          <h3>Voeg je favoriete liedje toe of stem het naar de top</h3>
+          <div class="col-md-6">
+            <form action="" method="post" class="row" data-ng-show="global.authenticated">
+                  <div class="form-group">
+                  <label for="videoUrl">Voeg een liedje toe op basis van een Youtube-url</label>
+                  <div class="input-group">
+                    <input type="text" id="videoUrl" placeholder="YouTube Url" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div><!-- /input-group -->
+                </div>
+              </form>
+          </div>
+          <div class="col-md-5 col-md-offset-1">
+            <form action="" method="post" class="row" data-ng-show="global.authenticated">
+                  <div class="form-group">
+                  <label for="videoSearch">Of zoek op Youtube</label>
+                  <div class="input-group">
+                    <input type="text" id="videoSearch" placeholder="YouTube Url" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Search!</button>
+                    </span>
+                  </div><!-- /input-group -->
+                </div>
+              </form>
+          </div>
+          <p data-ng-hide="global.authenticated"><a href="user/login/">Log in</a> to add items.</p>
+      </section>
 
-  </div>
 </section>
