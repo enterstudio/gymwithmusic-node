@@ -40,25 +40,40 @@ footer p {
 {
     position: relative;
     border-radius: 100% 100%;
-    border-width: 0;
+    border-width: 1px;
     padding: 10px;
-    top: 10px;
-    right: -10px;
+    top: 5px;
+    right: -5px;
 }
 
 .upvote:hover
 {
-    border-width: 0;
+    border-width: 1px;
 }
 
-.video .badge
+.upvoted
 {
-    position: absolute;
-    right: 8px;
-    top: 50%;
+    color: #ff7701;
+    background-color: #fff;
+    border-color: #ff7701;
+}
+
+.upvoted:hover
+{
+    color: #ff7701;
+    background-color: #fff;
+    margin-top: 0px;
+    cursor: default;
+    border-color: #ff7701;
 }
 
 .video p
 {
+    margin-top: -7px;
     width: 100%;
+}
+
+.video div.col-xs-4
+{
+    padding-right: 0;
 }
