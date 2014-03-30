@@ -1,0 +1,15 @@
+.admin .badge
+{
+  position: relative;
+  bottom: 20px;
+}
+
+.admin .navbar
+{
+  display: none;
+}
+
+.admin .content
+{
+  margin-top: 25px;
+}
