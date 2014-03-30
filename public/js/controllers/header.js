@@ -1,12 +1,27 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', 'Global', function ($scope, Global) {
+angular.module('gymwithmusic.system').controller('HeaderController', ['$scope', 'Global', '$location', function ($scope, Global, $location) {
     $scope.global = Global;
 
-    $scope.menu = [{
-        // 'title': 'Articles',
-        // 'link': 'articles'
-    }];
+    if(typeof user !== 'undefined' && user !== null){
+        if(user.admin){
+            $scope.menu = [{
+                'title': 'Word host',
+                'link': 'admin/screen'
+            }];
+        }
+    }
+
+    $scope.$on('$locationChangeSuccess', function(){
+        if($location.path() === '/admin/screen')
+        {
+            $("body").addClass('admin');
+        }
+        else
+        {
+            $("body").removeClass('admin');
+        }
+    });
     
     $scope.isCollapsed = false;
 }]);

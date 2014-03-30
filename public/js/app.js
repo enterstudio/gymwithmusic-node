@@ -1,6 +1,5 @@
 'use strict';
 
-angular.module('mean', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router', 'mean.system', 'mean.articles']);
+angular.module('gymwithmusic', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router', 'gymwithmusic.system']);
 
-angular.module('mean.system', []);
-angular.module('mean.articles', []);
+angular.module('gymwithmusic.system', []);
