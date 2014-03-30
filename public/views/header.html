@@ -4,14 +4,14 @@
             <a class="navbar-brand" href="/">Gym With Music</a>
         </li>
         <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-            <a href="#!/{{item.link}}">{{item.title}}</a>
+            <a href="/{{item.link}}">{{item.title}}</a>
         </li>
     </ul>
     <ul class="navbar-nav nav pull-right" data-ng-hide="global.authenticated">
-        <li><a href="signup">Signup</a>
+        <li><a href="/signup" target="_self">Signup</a>
         </li>
         <li class="divider-vertical"></li>
-        <li><a href="signin">Signin</a>
+        <li><a href="/signin" target="_self">Signin</a>
         </li>
     </ul>
     <ul class="navbar-nav nav pull-right" data-ng-show="global.authenticated">
@@ -20,7 +20,7 @@
 				{{global.user.name}} <b class="caret"></b>
 			</a>
             <ul class="dropdown-menu">
-                <li><a href="/signout">Signout</a>
+                <li><a href="/signout" target="_self">Signout</a>
                 </li>
             </ul>
         </li>
