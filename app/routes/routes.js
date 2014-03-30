@@ -73,4 +73,8 @@ module.exports = function(app, passport) {
         failureRedirect: '/siginin'
     }), users.authCallback);
 
+    // Home route
+    var index = require('../controllers/index');
+    app.get('*', index.render);
+
 };
