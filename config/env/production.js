@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://localhost/mean',
+    db: 'mongodb://rias:Superpritt7217@oceanic.mongohq.com:10067/gymwithmusic',
     app: {
         name: 'Gym With Music'
     },
