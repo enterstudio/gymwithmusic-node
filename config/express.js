@@ -9,7 +9,8 @@ var express = require('express'),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
     assetmanager = require('assetmanager'),
-    config = require('./config');
+    config = require('./config'),
+    mime = require('mime');
 
 module.exports = function(app, passport, db) {
     app.set('showStackError', true);
@@ -95,6 +96,12 @@ module.exports = function(app, passport, db) {
         // Setting the fav icon and static folder
         app.use(express.favicon());
         app.use(express.static(config.root + '/public'));
+
+        //Set MIME Types
+        express.static.mime.define({
+         'application/x-font-woff': ['woff'],
+         'application/font-woff': ['woff']
+        }); 
 
         // Routes should be at the last
         app.use(app.router);

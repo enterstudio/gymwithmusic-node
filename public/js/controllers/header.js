@@ -15,11 +15,11 @@ angular.module('gymwithmusic.system').controller('HeaderController', ['$scope', 
     $scope.$on('$locationChangeSuccess', function(){
         if($location.path() === '/admin/screen')
         {
-            $("body").addClass('admin');
+            $('body').addClass('admin');
         }
         else
         {
-            $("body").removeClass('admin');
+            $('body').removeClass('admin');
         }
     });
     
