@@ -95,7 +95,6 @@ module.exports = function(app, passport, db) {
 
         // Setting the fav icon and static folder
         app.use(express.favicon());
-        app.use(express.directory(config.root + '/public'));
         app.use(express.static(config.root + '/public'));
 
         //Set MIME Types
