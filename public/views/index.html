@@ -1,13 +1,46 @@
 <section data-ng-controller="IndexController">
-  <div class="row content">
-      <div class="col-sm-12 col-md-8 col-lg-8" id="nowplaying">
-          <section class="video big">
-              <img id="currentImage" class="img-responsive" src="http://placekitten.com/1000/600" />
-              <div class="videobar">
-                <p><a href="" data-ng-show="global.authenticated" class="pull-right btn btn-primary">Vote to skip</a></p>
-                <p class="lead">Placeholder title - Placeholder Artist <br /><small class="">toegevoegd door: Rias</small></p>
+      <div class="col-sm-12 col-md-8 col-lg-8">
+          <div class="row">
+            <section class="col-xs-12 nowplaying">
+                <img id="currentImage" class="img-responsive" src="http://placekitten.com/1000/300" />
+                <div class="videobar">
+                  <p><a href="" data-ng-show="global.authenticated" class="pull-right btn btn-primary">Vote to skip</a></p>
+                  <p class="lead">Placeholder title - Placeholder Artist <br /><small class="">toegevoegd door: Rias</small></p>
+                </div>
+            </section>
+          </div>
+          <div class="row">
+            <section class="col-xs-12" ng-controller="VideoController">
+              <h3>Voeg je favoriete liedje toe en/of stem het naar de top</h3>
+              <div class="col-md-6 hidden-xs">
+                <form action="" method="post" class="row" data-ng-show="global.authenticated">
+                      <div class="form-group">
+                      <label for="videoUrl">Voeg een liedje toe op basis van een Youtube-url</label>
+                      <div class="input-group">
+                        <input type="text" id="videoUrl" placeholder="YouTube Url" class="form-control">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                      </div><!-- /input-group -->
+                    </div>
+                  </form>
               </div>
-          </section>
+              <div class="col-md-5 col-md-offset-1">
+                <form action="" method="post" class="row" data-ng-show="global.authenticated">
+                      <div class="form-group">
+                      <label for="videoSearch"><span class="hidden-xs">Of z</span><span class="show-xs">Z</span>oek op Youtube</label>
+                      <div class="input-group">
+                        <input type="text" id="videoSearch" placeholder="YouTube Url" class="form-control">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">Search!</button>
+                        </span>
+                      </div><!-- /input-group -->
+                    </div>
+                  </form>
+              </div>
+              <p data-ng-hide="global.authenticated"><a href="user/login/">Log in</a> to add items.</p>
+            </section>
+          </div>
       </div>
       <div class="col-sm-12 col-md-4 col-lg-4">
         <div class="panel panel-default">
@@ -32,7 +65,7 @@
               <li class="video">
                 <div class="row no-gutter">
                   <div class="col-xs-4">
-                    <img class="img-responsive" src="https://i1.ytimg.com/vi/y6Sxv-sUYtM/default.jpg">  
+                    <img class="img-responsive" src="https://i1.ytimg.com/vi/y6Sxv-sUYtM/mqdefault.jpg">  
                   </div>
                   <div class="col-xs-8">
                     <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary"></span>
@@ -45,7 +78,7 @@
               <li class="video">
                 <div class="row no-gutter">
                   <div class="col-xs-4">
-                    <img class="img-responsive" src="https://i1.ytimg.com/vi/kdemFfbS5H0/default.jpg">  
+                    <img class="img-responsive" src="https://i1.ytimg.com/vi/kdemFfbS5H0/mqdefault.jpg">  
                   </div>
                   <div class="col-xs-8">
                     <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary"></span>
@@ -59,36 +92,4 @@
           </div>
         </div>  
       </div>
-      <section class="col-xs-12">
-      <hr>
-          <h3>Voeg je favoriete liedje toe en/of stem het naar de top</h3>
-          <div class="col-md-6">
-            <form action="" method="post" class="row" data-ng-show="global.authenticated">
-                  <div class="form-group">
-                  <label for="videoUrl">Voeg een liedje toe op basis van een Youtube-url</label>
-                  <div class="input-group">
-                    <input type="text" id="videoUrl" placeholder="YouTube Url" class="form-control">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div><!-- /input-group -->
-                </div>
-              </form>
-          </div>
-          <div class="col-md-5 col-md-offset-1">
-            <form action="" method="post" class="row" data-ng-show="global.authenticated">
-                  <div class="form-group">
-                  <label for="videoSearch">Of zoek op Youtube</label>
-                  <div class="input-group">
-                    <input type="text" id="videoSearch" placeholder="YouTube Url" class="form-control">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Search!</button>
-                    </span>
-                  </div><!-- /input-group -->
-                </div>
-              </form>
-          </div>
-          <p data-ng-hide="global.authenticated"><a href="user/login/">Log in</a> to add items.</p>
-      </section>
-
 </section>
