@@ -3,6 +3,11 @@
     margin-left:0
 }
 
+.navbar-nav
+{
+    margin: 0;
+}
+
 .content {
     width:100%
 }
