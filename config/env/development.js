@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://localhost/db',
+    db: 'mongodb://rias:Superpritt7217@oceanic.mongohq.com:10067/gymwithmusic',
     app: {
-        name: 'Gym With Music'
+        name: 'GymWithMusic'
     },
     facebook: {
         clientID: 'APP_ID',
