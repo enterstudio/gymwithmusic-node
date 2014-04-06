@@ -1,5 +1,5 @@
 <section data-ng-controller="IndexController">
-      <div class="col-sm-12 col-md-8 col-lg-8">
+      <div class="col-sm-12 col-md-8 col-lg-8" ng-controller="VideoController">
           <div class="row">
             <section class="col-xs-12 nowplaying">
                 <img id="currentImage" class="img-responsive" src="http://placekitten.com/1000/300" />
@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="row">
-            <section class="col-xs-12" ng-controller="VideoController">
+            <section class="col-xs-12">
               <h3>Voeg je favoriete liedje toe en/of stem het naar de top</h3>
               <div class="col-md-6 hidden-xs">
                 <form action="" method="post" class="row" data-ng-show="global.authenticated" ng-submit="addByUrl(videoUrl)">
@@ -45,6 +45,24 @@
               </div>
               <p data-ng-hide="global.authenticated"><a href="user/login/">Log in</a> to add items.</p>
             </section>
+          </div>
+          <div class="row">
+              <ul class="media-list">
+                <li class="media my-repeat-animation" ng-repeat="result in searchResults">
+                  <div class="col-xs-2">
+                    <img class="media-object img-responsive" ng-src="{{result.snippet.thumbnails.high.url}}" alt="{{result.snippet.title}}">  
+                  </div>
+                  <div class="col-xs-8">
+                    <div class="media-body">
+                      <h4 class="media-heading">{{result.snippet.title}}</h4>
+                      {{result.snippet.description}}
+                    </div>
+                  </div>
+                  <div class="col-xs-2">
+                    <i class="glyphicon glyphicon-plus pull-right btn btn-primary add" ng-click="addById(result.id.videoId, $event)"></i>
+                  </div>
+                </li>
+              </ul>
           </div>
       </div>
       <div class="col-sm-12 col-md-4 col-lg-4">
