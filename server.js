@@ -6,6 +6,8 @@
 var express = require('express'),
     fs = require('fs'),
     passport = require('passport'),
+    faye = require('faye'),
+    http = require('http'),
     logger = require('mean-logger');
 
 /**
@@ -45,9 +47,11 @@ walk(models_path);
 require('./config/passport')(passport);
 
 var app = express();
+var server = http.createServer(app);
 
 // Express settings
 require('./config/express')(app, passport, db);
+
 
 // Bootstrap routes
 var routes_path = __dirname + '/app/routes';
@@ -69,10 +73,12 @@ var walk = function(path) {
 };
 walk(routes_path);
 
-
 // Start the app by listening on <port>
 var port = process.env.PORT || config.port;
-app.listen(port);
+var socket = new faye.NodeAdapter({mount: '/socket'});
+socket.attach(server);
+server.listen(port);
+
 console.log('Express app started on port ' + port);
 
 // Initializing logger

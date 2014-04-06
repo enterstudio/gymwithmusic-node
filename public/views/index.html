@@ -10,6 +10,11 @@
             </section>
           </div>
           <div class="row">
+            <div ng-controller="MessageController">
+              <alert ng-repeat="message in global.messages" type="message.type" close="closeMessage($index)">{{message.msg}}</alert>
+            </div>
+          </div>
+          <div class="row">
             <section class="col-xs-12" ng-controller="VideoController">
               <h3>Voeg je favoriete liedje toe en/of stem het naar de top</h3>
               <div class="col-md-6 hidden-xs">
@@ -17,9 +22,9 @@
                       <div class="form-group">
                       <label for="videoUrl">Voeg een liedje toe op basis van een Youtube-url</label>
                       <div class="input-group">
-                        <input type="text" id="videoUrl" placeholder="YouTube Url" class="form-control">
+                        <input type="text" id="videoUrl" ng-model="videoUrl" placeholder="YouTube Url" class="form-control">
                         <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">Go!</button>
+                          <button class="btn btn-default" type="button" ng-click="addByUrl(videoUrl)">Go!</button>
                         </span>
                       </div><!-- /input-group -->
                     </div>
@@ -32,7 +37,7 @@
                       <div class="input-group">
                         <input type="text" id="videoSearch" placeholder="YouTube Url" class="form-control">
                         <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">Search!</button>
+                          <button class="btn btn-default" type="button">Zoek!</button>
                         </span>
                       </div><!-- /input-group -->
                     </div>
