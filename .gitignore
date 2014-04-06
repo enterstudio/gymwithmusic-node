@@ -7,3 +7,6 @@ node_modules/
 public/lib
 test/coverage
 mean.iml
+
+/gwm-node.sublime-project
+/gwm-node.sublime-workspace
