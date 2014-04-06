@@ -26,7 +26,8 @@ var VideoSchema = new Schema({
     },
     youtube_id: {
         type: String,
-        default: ''
+        default: '',
+        unique: true
     },
     thumbnail: {
         type: String,
