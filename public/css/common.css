@@ -94,14 +94,14 @@ footer p {
     top: 15px;
 }
 
-.upvoted, .added
+.upvoted.disabled, .added.disabled
 {
     color: #ff7701;
     background-color: #fff;
     border-color: #ff7701;
 }
 
-.upvoted:hover, .added:hover
+.upvoted.disabled:hover, .added.disabled:hover
 {
     color: #ff7701;
     background-color: #fff;

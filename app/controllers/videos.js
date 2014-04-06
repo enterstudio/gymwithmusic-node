@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  * All videos
  */
 exports.list = function(req, res) {
-    Video.find().populate('added_by').exec(function(err, videos)
+    Video.find().populate('added_by').sort('-vote_count').exec(function(err, videos)
     {
         return res.send({
             status: 'success',
@@ -42,7 +42,7 @@ exports.add = function(req, res) {
                 message: message
             });
         }
-        Video.find().populate('added_by').exec(function(err, videos)
+        Video.find().populate('added_by').sort('-vote_count').exec(function(err, videos)
         {
             return res.send({
                 status: 'success',
@@ -51,4 +51,24 @@ exports.add = function(req, res) {
         });
     });
 
+};
+
+exports.vote = function(req, res) {
+    var id = req.params.id;
+    var userId = req.body.userId;
+
+    Video.findOneAndUpdate(
+        {_id: id},
+        {$push: {voters: userId}, $inc: {vote_count: 1}},
+        {safe: true, upsert: true},
+        function() {
+            Video.find().populate('added_by').sort('-vote_count').exec(function(err, videos)
+            {
+                return res.send({
+                    status: 'success',
+                    videos: videos
+                });
+            });
+        }
+    );
 };

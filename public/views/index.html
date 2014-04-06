@@ -59,7 +59,7 @@
                     </div>
                   </div>
                   <div class="col-xs-2">
-                    <i class="glyphicon glyphicon-plus pull-right btn btn-primary add" ng-click="addById(result.id.videoId, $event)"></i>
+                    <i class="glyphicon glyphicon-plus pull-right btn btn-primary add" ng-class="{'added disabled': checkIfAdded(allVideos, result.id.videoId) !== -1}" ng-click="addById(result.id.videoId, $event)"></i>
                   </div>
                 </li>
               </ul>
@@ -78,9 +78,9 @@
                     <img class="img-responsive" ng-src="{{video.thumbnail}}">  
                   </div>
                   <div class="col-xs-8">
-                    <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary"></span>
+                    <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary" ng-class="{'upvoted disabled': video.voters.indexOf(global.user._id) !== -1}" ng-click="vote(video._id)"></span>
                     <p>{{video.title}}</p>
-                    <small>toegevoegd: <span ng-class="{'admin': video.added_by.admin}">{{video.added_by.name}}</span> <span class="badge pull-right">10</span></small>
+                    <small>toegevoegd: <span ng-class="{'admin': video.added_by.admin}">{{video.added_by.name}}</span> <span class="badge pull-right">{{video.vote_count}}</span></small>
                   </div>
                 </div>
                 <hr>

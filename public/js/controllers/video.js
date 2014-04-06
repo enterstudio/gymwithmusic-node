@@ -98,4 +98,31 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
         $scope.global.messages.push({ type: 'danger', msg: 'Oeps! YouTube kon geen video vinden, probeer opnieuw?' });
       });
     };
+
+    $scope.vote = function(id)
+    {
+      var data = {
+        userId: Global.user._id
+      };
+      $http.post('/videos/'+id, data)
+      .success(function(data) {
+        Faye.publish('/videos', data.videos);
+      })
+      .error(function(){
+        $scope.global.messages.push({ type: 'danger', msg: 'Oeps! Er liep iets fout tijdens het registreren van je stem.' });
+      });
+    };
+
+    $scope.checkIfAdded = function(obj, videoId) {
+        var returnKey = -1;
+
+        angular.forEach(obj, function(video, key) {
+            if (video.youtube_id === videoId) {
+               returnKey = key;
+                return false; 
+            }
+        });
+        return returnKey;       
+    };
+
 }]);

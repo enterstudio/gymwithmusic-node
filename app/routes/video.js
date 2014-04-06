@@ -7,4 +7,5 @@ module.exports = function(app) {
 
     app.post('/videos', videos.add);
     app.get('/videos', videos.list);
+    app.post('/videos/:id', videos.vote);
 };

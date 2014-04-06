@@ -36,6 +36,14 @@ var VideoSchema = new Schema({
     added_by: {
         type: Schema.ObjectId,
         ref: 'User'
+    },
+    vote_count: {
+        type: Number,
+        default: 0
+    },
+    voters: {
+       type: Array,
+       default: [] 
     }
 });
 
