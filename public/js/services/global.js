@@ -18,7 +18,7 @@ var FayeServerURL = '/socket';
 
 // Simple Faye service
 angular.module('gymwithmusic.system').factory('Faye', function() {
-  var client = new Faye.Client(FayeServerURL);
+  var client = new window.Faye.Client(FayeServerURL);
 
   return {
     publish: function(channel, message) {
@@ -28,5 +28,5 @@ angular.module('gymwithmusic.system').factory('Faye', function() {
     subscribe: function(channel, callback) {
       client.subscribe(channel, callback);
     }
-  }
+  };
 });

@@ -10,16 +10,16 @@ var mongoose = require('mongoose'),
 /**
  * All videos
  */
-exports.list = function(req, res, next) {
-    res.send("all videos");
+exports.list = function(req, res) {
+    res.send('all videos');
 };
 
 /**
  * Create video
  */
-exports.add = function(req, res, next) {
+exports.add = function(req, res) {
     var video = new Video(req.body);
-    var message = "";
+    var message = '';
     video.save(function(err) {
         if (err) {
             switch (err.code) {
@@ -32,14 +32,14 @@ exports.add = function(req, res, next) {
             }
 
             return res.send({
-                status: "error",
+                status: 'error',
                 message: message
             });
         }
         Video.find().populate('added_by').exec(function(err, videos)
         {
             return res.send({
-                status: "success",
+                status: 'success',
                 message: videos
             });
         });

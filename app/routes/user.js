@@ -2,7 +2,6 @@
 
 // User routes use users controller
 var users = require('../controllers/users');
-var index = require('../controllers/index');
 
 module.exports = function(app, passport) {
 

@@ -1,4 +1,6 @@
-angular.module('gymwithmusic.system').controller('MessageController', ['$scope', 'Global', '$location', function ($scope, Global, $location) {
+'use strict';
+
+angular.module('gymwithmusic.system').controller('MessageController', ['$scope', 'Global', function ($scope, Global) {
     $scope.global = Global;
 
     $scope.global.messages = [];

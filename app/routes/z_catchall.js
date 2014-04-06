@@ -2,7 +2,7 @@
 
 var index = require('../controllers/index');
 
-module.exports = function(app, passport) {
+module.exports = function(app) {
     
     // Home route
     app.get('*', index.render);

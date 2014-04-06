@@ -3,8 +3,8 @@
 angular.module('gymwithmusic.system').controller('HeaderController', ['$scope', 'Global', '$location', function ($scope, Global, $location) {
     $scope.global = Global;
 
-    if(typeof user !== 'undefined' && user !== null){
-        if(user.admin){
+    if(typeof Global.user !== 'undefined' && Global.user !== null){
+        if(Global.user.admin){
             $scope.menu = [{
                 'title': 'Word host',
                 'link': 'admin/screen'
@@ -15,11 +15,11 @@ angular.module('gymwithmusic.system').controller('HeaderController', ['$scope', 
     $scope.$on('$locationChangeSuccess', function(){
         if($location.path() === '/admin/screen')
         {
-            $('body').addClass('admin');
+            angular.element('body').addClass('admin');
         }
         else
         {
-            $('body').removeClass('admin');
+            angular.element('body').removeClass('admin');
         }
     });
     
