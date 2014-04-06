@@ -18,11 +18,11 @@
             <section class="col-xs-12" ng-controller="VideoController">
               <h3>Voeg je favoriete liedje toe en/of stem het naar de top</h3>
               <div class="col-md-6 hidden-xs">
-                <form action="" method="post" class="row" data-ng-show="global.authenticated">
+                <form action="" method="post" class="row" data-ng-show="global.authenticated" ng-submit="addByUrl(videoUrl)">
                       <div class="form-group">
                       <label for="videoUrl">Voeg een liedje toe op basis van een Youtube-url</label>
                       <div class="input-group">
-                        <input type="text" id="videoUrl" ng-model="videoUrl" placeholder="YouTube Url" class="form-control">
+                        <input type="text" id="videoUrl" ng-model="videoUrl" placeholder="bv. www.youtube.com/watch?v=dQw4w9WgXcQ" class="form-control">
                         <span class="input-group-btn">
                           <button class="btn btn-default" type="button" ng-click="addByUrl(videoUrl)">Go!</button>
                         </span>
@@ -31,13 +31,13 @@
                   </form>
               </div>
               <div class="col-md-5 col-md-offset-1">
-                <form action="" method="post" class="row" data-ng-show="global.authenticated">
+                <form action="" method="post" class="row" data-ng-show="global.authenticated" ng-submit="searchYoutube(searchTerms)">
                       <div class="form-group">
-                      <label for="videoSearch"><span class="hidden-xs">Of z</span><span class="show-xs">Z</span>oek op Youtube</label>
+                      <label for="videoSearch"><span class="hidden-xs">Of z</span><span class="visible-xs">Z</span>oek op Youtube</label>
                       <div class="input-group">
-                        <input type="text" id="videoSearch" placeholder="YouTube Url" class="form-control">
+                        <input type="text" id="videoSearch" ng-model="searchTerms" typeahead="results for results in autocomplete($viewValue)" placeholder="bv. 'Nirvana'" class="form-control">
                         <span class="input-group-btn">
-                          <button class="btn btn-default" type="button">Zoek!</button>
+                          <button class="btn btn-default" type="button" ng-click="searchYoutube(searchTerms)">Zoek!</button>
                         </span>
                       </div><!-- /input-group -->
                     </div>
