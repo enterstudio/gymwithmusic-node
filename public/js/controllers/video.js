@@ -2,8 +2,20 @@
 
 angular.module('gymwithmusic.system').controller('VideoController', ['$scope', 'Global', '$location', '$http', 'Faye', function ($scope, Global, $location, $http, Faye) {
     $scope.global = Global;
+
+    //Initialize all videos
+    (function(){
+      $http.get('/videos').
+      success(function(data) {
+        $scope.allVideos = data.videos;
+      });
+    })();
+
+    //Refresh when new videos added/voted
     Faye.subscribe('/videos', function(videos){
-      $scope.allVideos = videos;
+      $scope.$apply(function() {
+           $scope.allVideos = videos;
+      });
     });
 
     $scope.addByUrl = function(url)

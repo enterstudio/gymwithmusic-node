@@ -11,7 +11,13 @@ var mongoose = require('mongoose'),
  * All videos
  */
 exports.list = function(req, res) {
-    res.send('all videos');
+    Video.find().populate('added_by').exec(function(err, videos)
+    {
+        return res.send({
+            status: 'success',
+            videos: videos
+        });
+    });
 };
 
 /**
