@@ -2,6 +2,7 @@
 
 // User routes use users controller
 var users = require('../controllers/users');
+var index = require('../controllers/index');
 
 module.exports = function(app, passport) {
 
@@ -72,9 +73,4 @@ module.exports = function(app, passport) {
     app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
         failureRedirect: '/siginin'
     }), users.authCallback);
-
-    // Home route
-    var index = require('../controllers/index');
-    app.get('*', index.render);
-
 };
