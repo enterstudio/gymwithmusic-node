@@ -12,3 +12,21 @@ angular.module('gymwithmusic.system').factory('Global', [
         return _this._data;
     }
 ]);
+
+
+var FayeServerURL = '/socket';
+
+// Simple Faye service
+angular.module('gymwithmusic.system').factory('Faye', function() {
+  var client = new Faye.Client(FayeServerURL);
+
+  return {
+    publish: function(channel, message) {
+      client.publish(channel, message);
+    },
+
+    subscribe: function(channel, callback) {
+      client.subscribe(channel, callback);
+    }
+  }
+});
