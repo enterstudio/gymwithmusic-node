@@ -4,63 +4,22 @@
           <section class="video big">
               <img id="currentImage" class="img-responsive" src="http://placekitten.com/1000/600" />
               <div class="videobar">
-                <p><a href="" data-ng-show="global.authenticated" class="pull-right btn btn-primary">Next</a></p>
-                <p class="lead">Placeholder title - Placeholder Artist <br /><small class="">toegevoegd door: Rias</small></p>
+                <p class="lead pull-left">Placeholder title - Placeholder Artist <br /><small class="">Toegevoegd door: Rias</small></p>
+                <p class="lead pull-right">Aantal skip-votes: {{skipvotes || 0}} <br /><small>5 nodig om te skippen</small></p>
               </div>
           </section>
       </div>
-      <div class="col-sm-12 col-md-4 col-lg-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Up next</h3>
-          </div>
-          <div class="panel-body videopanel">
-            <ul class="videos">
-              <li class="video">
-                <div class="row no-gutter">
-                  <div class="col-xs-4">
-                    <img class="img-responsive" src="https://i1.ytimg.com/vi/0KSOMA3QBU0/mqdefault.jpg">  
-                  </div>
-                  <div class="col-xs-8">
-                    <p><strong>Dark Horse</strong> <br />Katy Perry</p>
-                    <small>toegevoegd: Rias <span class="badge pull-right">10</span></small>
-                  </div>
-                </div>
-              </li>
-              <hr>
-              <li class="video">
-                <div class="row no-gutter">
-                  <div class="col-xs-4">
-                    <img class="img-responsive" src="https://i1.ytimg.com/vi/y6Sxv-sUYtM/default.jpg">  
-                  </div>
-                  <div class="col-xs-8">
-                    <p><strong>Happy</strong><br />Pharrell Williams</p>
-                    <small>toegevoegd: Rias <span class="badge pull-right">10</span></small>
-                  </div>
-                </div>
-              </li>
-              <hr>
-              <li class="video">
-                <div class="row no-gutter">
-                  <div class="col-xs-4">
-                    <img class="img-responsive" src="https://i1.ytimg.com/vi/kdemFfbS5H0/default.jpg">  
-                  </div>
-                  <div class="col-xs-8">
-                    <p><strong>#SELFIE</strong><br />The Chainsmokers</p>
-                    <small>toegevoegd: Rias <span class="badge pull-right">10</span></small>
-                  </div>
-                </div>
-              </li>
-              <hr>
-            </ul>
-          </div>
-        </div>  
+      <div class="col-sm-12 col-md-4 col-lg-4" ng-controller="VideoController" ng-include src="'/views/includes/upnext.html'">
       </div>
-      <section class="col-xs-12">
-      <hr>
+      <div class="clearfix"></div>
+      <hr class="smallmargin">
+      <section class="col-xs-10">
           <h3>Ga naar www.gymwithmusic.be om muziek toe te voegen</h3>
           <p class="lead">Stem vervolgens je favoriete liedje naar de top zodat het begint te spelen</p>
           <p>Ontwikkeld door <span class="text-primary">@Riasvdv, @ThomasBormans &amp; @Flrvt</span></p>
+      </section>
+      <section class="col-xs-2">
+        <img src="/img/icons/logo_medium.png" width="150" class="pull-right" alt="">
       </section>
 
 </section>

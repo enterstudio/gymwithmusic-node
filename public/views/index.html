@@ -33,7 +33,7 @@
               <div class="col-md-5 col-md-offset-1">
                 <form action="" method="post" class="row" data-ng-show="global.authenticated" ng-submit="searchYoutube(searchTerms)">
                       <div class="form-group">
-                      <label for="videoSearch"><span class="hidden-xs">Of z</span><span class="visible-xs">Z</span>oek op Youtube</label>
+                      <label for="videoSearch">Zoek op Youtube</label>
                       <div class="input-group">
                         <input type="text" id="videoSearch" ng-model="searchTerms" typeahead="results for results in autocomplete($viewValue)" placeholder="bv. 'Nirvana'" class="form-control">
                         <span class="input-group-btn">
@@ -49,13 +49,13 @@
           <div class="row">
               <ul class="media-list">
                 <li class="media my-repeat-animation" ng-repeat="result in searchResults">
-                  <div class="col-xs-2">
+                  <div class="col-xs-3">
                     <img class="media-object img-responsive" ng-src="{{result.snippet.thumbnails.high.url}}" alt="{{result.snippet.title}}">  
                   </div>
-                  <div class="col-xs-8">
+                  <div class="col-xs-7">
                     <div class="media-body">
-                      <h4 class="media-heading">{{result.snippet.title}}</h4>
-                      {{result.snippet.description}}
+                      <h4 class="media-heading">{{result.snippet.title | cut:true:80:'...'}}</h4>
+                      {{result.snippet.description | cut:true:80:'...'}}
                     </div>
                   </div>
                   <div class="col-xs-2">
@@ -65,28 +65,6 @@
               </ul>
           </div>
       </div>
-      <div class="col-sm-12 col-md-4 col-lg-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Up next</h3>
-          </div>
-          <div class="panel-body videopanel">
-            <ul class="videos">
-              <li class="video" ng-repeat="video in allVideos">
-                <div class="row no-gutter">
-                  <div class="col-xs-4">
-                    <img class="img-responsive" ng-src="{{video.thumbnail}}">  
-                  </div>
-                  <div class="col-xs-8">
-                    <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary" ng-class="{'upvoted disabled': video.voters.indexOf(global.user._id) !== -1}" ng-click="vote(video._id)"></span>
-                    <p>{{video.title}}</p>
-                    <small>toegevoegd: <span ng-class="{'admin': video.added_by.admin}">{{video.added_by.name}}</span> <span class="badge pull-right">{{video.vote_count}}</span></small>
-                  </div>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>  
+      <div class="col-sm-12 col-md-4 col-lg-4" ng-include src="'/views/includes/upnext.html'">
       </div>
 </section>
