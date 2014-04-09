@@ -2,6 +2,11 @@
 
 angular.module('gymwithmusic.system').controller('HeaderController', ['$scope', 'Global', '$location', function ($scope, Global, $location) {
     $scope.global = Global;
+    
+    if($location.path() !== '/signin' && $location.path() !== '/signup')
+    {
+        angular.element('html').removeClass('auth');
+    }
 
     if(typeof Global.user !== 'undefined' && Global.user !== null){
         if(Global.user.admin){
@@ -13,13 +18,14 @@ angular.module('gymwithmusic.system').controller('HeaderController', ['$scope', 
     }
 
     $scope.$on('$locationChangeSuccess', function(){
+
         if($location.path() === '/admin/screen')
         {
-            angular.element('body').addClass('admin');
+            angular.element('html').addClass('admin');
         }
         else
         {
-            angular.element('body').removeClass('admin');
+            angular.element('html').removeClass('admin');
         }
     });
     
