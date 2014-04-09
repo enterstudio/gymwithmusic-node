@@ -1,7 +1,20 @@
 .admin .badge
 {
-  position: relative;
-  bottom: 20px;
+  top: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 7px 10px;
+  background-color: transparent;
+  border: 1px solid #ff7701;
+  color: #ff7701;
+  font-family: monospace;
+}
+
+.admin .videopanel p.ng-binding
+{
+  margin-top: 0px;
+  min-height: 60px;
 }
 
 .admin .navbar
@@ -9,7 +22,55 @@
   display: none;
 }
 
-.admin .content
+.admin section.content
 {
-  margin-top: 25px;
+  margin-top: 5px;
 }
+
+.admin .container
+{
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.admin .row.content
+{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.admin .row.content .upvote
+{
+  display: none;
+}
+
+.admin .col-sm-12, .admin .col-xs-12
+{
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.admin .col-md-4
+{
+  padding-left: 15px;
+}
+
+.admin .videopanel
+{
+    max-height: 402px;
+    overflow-x: hidden;
+}
+
+.admin .videopanel small
+{
+  top: 100%;
+  position: absolute;
+}
+
+.admin .videopanel::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+

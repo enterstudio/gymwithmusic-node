@@ -35,6 +35,12 @@
     width:100%
 }
 
+hr.smallmargin
+{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 footer {
     position:fixed;
     left:0;
@@ -54,7 +60,8 @@ footer p {
 .videopanel
 {
     max-height: 400px;
-    overflow-x: scroll;
+    overflow-x: hidden;
+
 }
 
 .videos
@@ -74,6 +81,23 @@ footer p {
     padding-bottom: 15px;
 }
 
+.badge
+{
+  position: absolute;
+  top: 45px;
+  right: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 100%;
+  padding: 7px 10px;
+  font-family: monospace;
+}
+
+.videopanel p.ng-binding
+{
+  min-height: 60px;
+}
+
 .upvote, .add
 {
     position: relative;
@@ -81,7 +105,7 @@ footer p {
     border-width: 1px;
     padding: 10px;
     top: 5px;
-    right: -5px;
+    right: -4px;
 }
 
 .upvote:hover, .add:hover
@@ -108,12 +132,6 @@ footer p {
     margin-top: 0;
     cursor: default;
     border-color: #ff7701;
-}
-
-.video p
-{
-    margin-top: -7px;
-    width: 100%;
 }
 
 .video div.col-xs-4
