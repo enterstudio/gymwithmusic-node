@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Up next</h3>
+  </div>
+  <div class="panel-body videopanel">
+    <ul class="videos">
+      <li class="video" ng-repeat="video in allVideos">
+        <div class="row no-gutter">
+          <div class="col-xs-4">
+            <img class="img-responsive" ng-src="{{video.thumbnail}}">  
+          </div>
+          <div class="col-xs-8">
+            <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary" 
+            ng-class="{'upvoted disabled':  video.voterIds.indexOf(global.user._id) !== -1 || 
+                                            video.voterNames.indexOf(global.user.name) !== -1 ||
+                                            video.voterEmails.indexOf(global.user.email) !== -1}" ng-click="vote(video._id)"></span>
+            <span class="badge pull-right">{{video.vote_count}}</span>
+            <p>{{video.title | cut:true:80:'...'}}</p>
+            <small>toegevoegd door: <span ng-class="{'admin': video.added_by.admin}">{{video.added_by.name}}</span></small>
+          </div>
+        </div>
+        <hr>
+      </li>
+    </ul>
+  </div>
+</div>  

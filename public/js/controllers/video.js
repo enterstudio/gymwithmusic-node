@@ -101,16 +101,24 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
 
     $scope.vote = function(id)
     {
-      var data = {
-        userId: Global.user._id
-      };
-      $http.post('/videos/'+id, data)
-      .success(function(data) {
-        Faye.publish('/videos', data.videos);
-      })
-      .error(function(){
-        $scope.global.messages.push({ type: 'danger', msg: 'Oeps! Er liep iets fout tijdens het registreren van je stem.' });
-      });
+      if(Global.user){
+        var data = {
+          userId: Global.user._id,
+          userName: Global.user.name,
+          userEmail: Global.user.email
+        };
+        $http.post('/videos/'+id, data)
+        .success(function(data) {
+          Faye.publish('/videos', data.videos);
+        })
+        .error(function(){
+          $scope.global.messages.push({ type: 'danger', msg: 'Oeps! Er liep iets fout tijdens het registreren van je stem.' });
+        });
+      }
+      else
+      {
+        $scope.global.messages.push({ type: 'danger', msg: 'Je moet inloggen om te stemmen!' });
+      }
     };
 
     $scope.checkIfAdded = function(obj, videoId) {
