@@ -6,13 +6,13 @@ module.exports = {
         name: 'GymWithMusic'
     },
     facebook: {
-        clientID: 'APP_ID',
-        clientSecret: 'APP_SECRET',
+        clientID: '221610951296607',
+        clientSecret: '20d5850ef7627e6f99a79b24610c91bc',
         callbackURL: 'http://localhost:3000/auth/facebook/callback'
     },
     twitter: {
-        clientID: 'CONSUMER_KEY',
-        clientSecret: 'CONSUMER_SECRET',
+        clientID: '1ppOUZaqZsLllfEEODACpKW5Z',
+        clientSecret: 'EFdn3MZstZftXZWCMGmltYH452dgxiOyfZBoAzRxhOomKk8NFp',
         callbackURL: 'http://localhost:3000/auth/twitter/callback'
     },
     github: {
@@ -21,8 +21,8 @@ module.exports = {
         callbackURL: 'http://localhost:3000/auth/github/callback'
     },
     google: {
-        clientID: 'APP_ID',
-        clientSecret: 'APP_SECRET',
+        clientID: '280257166673-5rsdlga81l7aoc8gi39vo002rq8jr4h3.apps.googleusercontent.com',
+        clientSecret: 't9xw8-N7x9gVCI6JAtnM2enI',
         callbackURL: 'http://localhost:3000/auth/google/callback'
     },
     linkedin: {
