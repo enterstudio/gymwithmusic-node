@@ -41,7 +41,15 @@ var VideoSchema = new Schema({
         type: Number,
         default: 0
     },
-    voters: {
+    voterIds: {
+       type: Array,
+       default: [] 
+    },
+    voterNames: {
+       type: Array,
+       default: [] 
+    },
+    voterEmails: {
        type: Array,
        default: [] 
     }

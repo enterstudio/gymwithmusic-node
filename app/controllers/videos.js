@@ -56,10 +56,12 @@ exports.add = function(req, res) {
 exports.vote = function(req, res) {
     var id = req.params.id;
     var userId = req.body.userId;
+    var userName = req.body.userName;
+    var userEmail = req.body.userEmail;
 
     Video.findOneAndUpdate(
         {_id: id},
-        {$push: {voters: userId}, $inc: {vote_count: 1}},
+        {$push: {voterIds: userId, voterNames: userName, voterEmails: userEmail}, $inc: {vote_count: 1}},
         {safe: true, upsert: true},
         function() {
             Video.find().populate('added_by').sort('-vote_count').exec(function(err, videos)
