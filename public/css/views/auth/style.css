@@ -1,0 +1,107 @@
+.auth body
+{
+  background: #eee;
+}
+
+@font-face {
+    font-family: 'Mono Social Icons Font';
+    src: url('/build/fonts/MonoSocialIconsFont-1.10.eot');
+    src: url('/build/fonts/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+         url('/build/fonts/MonoSocialIconsFont-1.10.woff') format('woff'),
+         url('/build/fonts/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+         url('/build/fonts/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+    src: url('/build/fonts/MonoSocialIconsFont-1.10.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.auth .symbol
+{
+  font-family: 'Mono Social Icons Font';
+  font-size: 40px;
+  float: right;
+  line-height: 33px;
+}
+
+.auth .glyphicon-user
+{
+  font-size: 50px;
+  margin: 0 auto;
+  display: block;
+  width: 50px;
+  height: 50px;
+  padding-top: 5px;
+  overflow: hidden;
+  color: #ccc;
+}
+
+.auth .socialLogin
+{
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding-left: 0;
+  background: #fff;
+}
+
+.auth .socialLogin li
+{
+  list-style-type: none;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 10px;
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.auth .socialLogin li:hover
+{
+  background: #f8f8f8;
+}
+
+.auth .socialLogin li:last-child
+{
+  border: none;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.auth .socialLogin li:first-child
+{
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.auth .socialLogin li a
+{
+  display: block;
+}
+
+.auth .socialLogin li a:hover
+{
+  text-decoration: none;
+}
+
+.auth .twitter a
+{
+  color: #5DA5E9;
+}
+
+.auth .facebook a
+{
+  color: #4A5C99;
+}
+
+.auth .google a
+{
+  color: #BF4935;
+}
+
+.auth .panel
+{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.auth a
+{
+  color: #646464;
+}
