@@ -8,6 +8,25 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
       $http.get('/videos').
       success(function(data) {
         Global.allVideos = data.videos;
+
+        //Initialize current video
+        (function(){
+          $http.get('/videos/current').
+          success(function(data) {
+            if(Global.allVideos.length > 0 || Global.currentVideo.added_by.name !== '')
+            {
+              Global.currentVideo = data.video[0];
+            }
+          });
+        })();
+      });
+    })();
+
+    //Get skipvotes
+    (function(){
+      $http.get('/skipvotes').
+      success(function(data) {
+        $scope.skipVotes = data.votes;
       });
     })();
 
@@ -18,16 +37,7 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
       });
     });
 
-    //Initialize current video
-    (function(){
-      $http.get('/videos/current').
-      success(function(data) {
-        if(Global.allVideos.length > 0 || Global.currentVideo.added_by.name !== '')
-        {
-          Global.currentVideo = data.video[0];
-        }
-      });
-    })();
+    
 
     //Refresh when current video changes
     Faye.subscribe('/currentVideo', function(video){
@@ -35,6 +45,29 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
            Global.currentVideo = video;
       });
     });
+
+    //Refresh when current video changes
+    Faye.subscribe('/skipVotes', function(votes){
+      var votes = votes;
+      $scope.$apply(function() {
+          $scope.skipVotes = votes;
+      });
+    });
+
+    $scope.voteSkip = function()
+    {
+      var vote = {
+        userId: Global.user._id
+      };
+
+      $http.post('/skipvotes', vote)
+      .success(function(data) {
+        Faye.publish('/skipvotes', data.votes);
+      })
+      .error(function(){
+        $scope.global.messages.push({ type: 'danger', msg: 'Oeps! Er liep iets fout bij het registreren van je stem.' });
+      });
+    }
 
     $scope.addByUrl = function(url)
     {
@@ -63,13 +96,19 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
 
     $scope.searchYoutube = function(terms)
     {
-      $http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=viewCount&q='+terms+'&type=video&videoCategoryId=10&videoEmbeddable=true&key=AIzaSyDbhofgKeHR6BvGATtxqGv1WIJMSaCl5sM').
-      success(function(data) {
-        $scope.searchResults = data.items;
-      }).
-      error(function() {
-        $scope.global.messages.push({ type: 'danger', msg: 'Oeps! Er is iets misgelopen bij YouTube, probeer nog eens?' });
-      });
+      if(terms !== '' && terms !== undefined){
+        $http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=viewCount&q='+terms+'&type=video&videoCategoryId=10&videoEmbeddable=true&key=AIzaSyDbhofgKeHR6BvGATtxqGv1WIJMSaCl5sM').
+        success(function(data) {
+          $scope.searchResults = data.items;
+        }).
+        error(function() {
+          $scope.global.messages.push({ type: 'danger', msg: 'Oeps! Er is iets misgelopen bij YouTube, probeer nog eens?' });
+        });
+      }
+      else
+      {
+        $scope.searchResults = [];
+      }
     };
 
     $scope.addById = function(id, $event)

@@ -2,6 +2,21 @@
 
 angular.module('gymwithmusic.system').controller('ScreenController', ['$scope', '$http', 'Global', 'Faye', '$youtube', function ($scope, $http, Global, Faye, $youtube) {
     $scope.global = Global;
+
+    //Refresh when current video changes
+    Faye.subscribe('/skipVotes', function(votes){
+      var votes = votes;
+      $scope.$apply(function() {
+          $scope.skipVotes = votes;
+      });
+
+      if(votes.length >= 5)
+      {
+        newVideo();
+        $scope.skipVotes = [];
+        Faye.publish('/skipVotes', $scope.skipVotes);
+      }
+    });
     
     newVideo();
 
@@ -30,8 +45,10 @@ angular.module('gymwithmusic.system').controller('ScreenController', ['$scope', 
                   $youtube.playerId = 'best-vid';
                   $youtube.videoId = currentVideo.youtube_id;
                   $youtube.loadPlayer();
+                  $scope.skipVotes = [];
                   Faye.publish('/currentVideo', currentVideo);
                   Faye.publish('/videos', data.message);
+                  Faye.publish('/skipVotes', $scope.skipVotes);
                 }
                 else
                 {

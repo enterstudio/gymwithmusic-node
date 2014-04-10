@@ -5,7 +5,7 @@
               <youtube-player id="best-vid" video-id="theBestVideo" style="min-height: 405px; display: block;"></youtube-player>
               <div class="videobar">
                 <p class="lead pull-left">{{global.currentVideo.title || "Er wordt momenteel geen video afgespeeld."}}<br /><small class="" ng-show="global.currentVideo.added_by.name">Toegevoegd door: {{global.currentVideo.added_by.name}}</small></p>
-                <p class="lead pull-right">Aantal skip-votes: {{skipvotes || 0}} <br /><small>5 nodig om te skippen</small></p>
+                <p class="lead pull-right">Aantal skip-votes: {{skipVotes.length || 0}} <br /><small>Totaal 5 nodig om te skippen</small></p>
               </div>
           </section>
       </div>
@@ -13,13 +13,13 @@
       </div>
       <div class="clearfix"></div>
       <hr class="smallmargin">
-      <section class="col-xs-10">
-          <h3>Ga naar www.gymwithmusic.be om muziek toe te voegen</h3>
-          <p class="lead">Stem vervolgens je favoriete liedje naar de top zodat het begint te spelen</p>
+      <section class="col-xs-9">
+          <h3><i class="glyphicon glyphicon-headphones"></i> Ga naar www.gymwithmusic.be om muziek toe te voegen aan de playlist </h3>
+          <p class="lead instruction">Zorg dat je favoriete nummers beginnen met spelen door te stemmen!</p>
           <p>Ontwikkeld door <span class="text-primary">@Riasvdv, @ThomasBormans &amp; @Flrvt</span></p>
       </section>
-      <section class="col-xs-2">
-        <img src="/img/icons/logo_medium.png" width="150" class="pull-right" alt="">
+      <section class="col-xs-3">
+        <img src="/img/icons/logo_medium.png" class="pull-right img-responsive" alt="">
       </section>
 
 </section>

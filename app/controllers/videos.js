@@ -5,8 +5,61 @@
  */
 var mongoose = require('mongoose'),
     Video = mongoose.model('Video'),
-    CurrentVideo = mongoose.model('CurrentVideo');
+    CurrentVideo = mongoose.model('CurrentVideo'),
+    SkipVote = mongoose.model('SkipVote');
 
+
+
+exports.addSkipVote = function(req, res) {
+    var userId = req.body.userId;
+
+    SkipVote.find().exec(function(err, votes){
+        if(votes && votes.length > 0)
+        {
+            var voteId = votes[0]._id;
+            SkipVote.findOneAndUpdate(
+                {_id: voteId},
+                {$push: {voters: userId}},
+                {safe: true, upsert: true},
+                function() {
+                    SkipVote.find().exec(function(err, votes)
+                    {
+                        return res.send({
+                            status: 'success',
+                            votes: votes
+                        });
+                    });
+                }
+            );
+        }
+        else
+        {
+            var skipVote = new SkipVote({
+                voters: userId
+            });
+            skipVote.save(function(err) {
+                SkipVote.find().exec(function(err, votes)
+                {
+                    return res.send({
+                        status: 'success',
+                        votes: votes
+                    });
+                });
+            });
+        }
+    });
+    
+};
+
+exports.getSkipVotes = function(req, res) {
+    SkipVote.find().exec(function(err, votes)
+    {
+        return res.send({
+            status: 'success',
+            votes: votes
+        });
+    });
+};
 
 /**
  * All videos
@@ -56,14 +109,16 @@ exports.add = function(req, res) {
 
 exports.addCurrent = function(req, res) {
     var video = new CurrentVideo(req.body);
-    Video.findOne({_id: req.body._id}, function(err,obj) { obj.remove(); });
+    //Video.findOne({_id: req.body._id}, function(err,obj) { obj.remove(); });
     CurrentVideo.collection.remove(function(err){
-        video.save(function(err) {
-            Video.find().populate('added_by').sort('-vote_count').exec(function(err, videos)
-            {
-                return res.send({
-                    status: 'success',
-                    message: videos
+        SkipVote.collection.remove(function(err){
+            video.save(function(err) {
+                Video.find().populate('added_by').sort('-vote_count').exec(function(err, videos)
+                {
+                    return res.send({
+                        status: 'success',
+                        message: videos
+                    });
                 });
             });
         });
