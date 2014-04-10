@@ -7,14 +7,32 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
     (function(){
       $http.get('/videos').
       success(function(data) {
-        $scope.allVideos = data.videos;
+        Global.allVideos = data.videos;
       });
     })();
 
     //Refresh when new videos added/voted
     Faye.subscribe('/videos', function(videos){
       $scope.$apply(function() {
-           $scope.allVideos = videos;
+           Global.allVideos = videos;
+      });
+    });
+
+    //Initialize current video
+    (function(){
+      $http.get('/videos/current').
+      success(function(data) {
+        if(Global.allVideos.length > 0 || Global.currentVideo.added_by.name !== '')
+        {
+          Global.currentVideo = data.video[0];
+        }
+      });
+    })();
+
+    //Refresh when current video changes
+    Faye.subscribe('/currentVideo', function(video){
+      $scope.$apply(function() {
+           Global.currentVideo = video;
       });
     });
 

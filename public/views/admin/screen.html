@@ -1,10 +1,10 @@
-<section data-ng-controller="AdminController" class="admin">
+<section class="admin">
   <div class="row content">
       <div class="col-sm-12 col-md-8 col-lg-8" id="nowplaying">
-          <section class="video big">
-              <img id="currentImage" class="img-responsive" src="http://placekitten.com/1000/600" />
+          <section class="video big" ng-controller="ScreenController">
+              <youtube-player id="best-vid" video-id="theBestVideo" style="min-height: 405px; display: block;"></youtube-player>
               <div class="videobar">
-                <p class="lead pull-left">Placeholder title - Placeholder Artist <br /><small class="">Toegevoegd door: Rias</small></p>
+                <p class="lead pull-left">{{global.currentVideo.title || "Er wordt momenteel geen video afgespeeld."}}<br /><small class="" ng-show="global.currentVideo.added_by.name">Toegevoegd door: {{global.currentVideo.added_by.name}}</small></p>
                 <p class="lead pull-right">Aantal skip-votes: {{skipvotes || 0}} <br /><small>5 nodig om te skippen</small></p>
               </div>
           </section>
