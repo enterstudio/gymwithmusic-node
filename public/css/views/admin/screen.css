@@ -23,6 +23,11 @@
   text-align: right;
 }
 
+.admin .lead.pull-left
+{
+  max-width: 420px;
+}
+
 .admin .navbar
 {
   display: none;
@@ -85,7 +90,7 @@
 
 .admin .lead.instruction
 {
-  font-size: 35px;
+  font-size: 27px;
 }
 
 .admin .panel-title
@@ -95,7 +100,12 @@
 
 .admin section h3
 {
-  font-size: 35px;
+  font-size: 30px;
+}
+
+.col-xs-3 img
+{
+  max-height: 230px;
 }
 
 
