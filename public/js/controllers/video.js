@@ -113,43 +113,53 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
 
     $scope.addById = function(id, $event)
     {
-      $http.get('https://www.googleapis.com/youtube/v3/videos?part=snippet&id='+id+'&key=AIzaSyDbhofgKeHR6BvGATtxqGv1WIJMSaCl5sM').
+      $http.get('https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id='+id+'&key=AIzaSyDbhofgKeHR6BvGATtxqGv1WIJMSaCl5sM').
       success(function(data) {
 
-        var title = data.items[0].snippet.title;
-        var thumbnail = data.items[0].snippet.thumbnails.high.url;
+        var duration = convert_time(data.items[0].contentDetails.duration);
 
-        var video = {
-          title: title,
-          url: 'http://www.youtube.com/watch?v=' + id,
-          youtube_id: id,
-          thumbnail: thumbnail,
-          added_by: Global.user._id
-        };
+        if(duration <= 900)
+        {
+          var title = data.items[0].snippet.title;
+          var thumbnail = data.items[0].snippet.thumbnails.high.url;
 
-        $http.post('/videos', video).
-          success(function(data) {
-            if(data.status === 'success')
-            {
-              if($event)
+          var video = {
+            title: title,
+            url: 'http://www.youtube.com/watch?v=' + id,
+            youtube_id: id,
+            thumbnail: thumbnail,
+            added_by: Global.user._id
+          };
+
+          $http.post('/videos', video).
+            success(function(data) {
+              if(data.status === 'success')
               {
-                angular.element($event.toElement).addClass('added');
+                if($event)
+                {
+                  angular.element($event.toElement).addClass('added');
+                }
+                $scope.global.messages.push({ type: 'success', msg: 'Je video is toegevoegd' });
+                Faye.publish('/videos', data.message);
               }
-              $scope.global.messages.push({ type: 'success', msg: 'Je video is toegevoegd' });
-              Faye.publish('/videos', data.message);
-            }
-            else
-            {
-              $scope.global.messages.push({ type: 'danger', msg: data.message });
-              if($event)
+              else
               {
-                angular.element($event.toElement).addClass('added');
+                $scope.global.messages.push({ type: 'danger', msg: data.message });
+                if($event)
+                {
+                  angular.element($event.toElement).addClass('added');
+                }
               }
-            }
-          }).
-          error(function() {
-            $scope.global.messages.push({ type: 'danger', msg: 'Oeps! De video werd gevonden maar er liep iets fout bij ons. Probeer opnieuw?' });
-          });
+            }).
+            error(function() {
+              $scope.global.messages.push({ type: 'danger', msg: 'Oeps! De video werd gevonden maar er liep iets fout bij ons. Probeer opnieuw?' });
+            });
+        }
+        else
+        {
+          $scope.global.messages.push({ type: 'danger', msg: 'Je video is te lang! We hebben graag verschillende nummers!' });
+        }
+
       }).
       error(function() {
         $scope.global.messages.push({ type: 'danger', msg: 'Oeps! YouTube kon geen video vinden, probeer opnieuw?' });
@@ -189,5 +199,38 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
         });
         return returnKey;       
     };
+
+    function convert_time(duration) {
+        var a = duration.match(/\d+/g);
+
+        if (duration.indexOf('M') >= 0 && duration.indexOf('H') == -1 && duration.indexOf('S') == -1) {
+            a = [0, a[0], 0];
+        }
+
+        if (duration.indexOf('H') >= 0 && duration.indexOf('M') == -1) {
+            a = [a[0], 0, a[1]];
+        }
+        if (duration.indexOf('H') >= 0 && duration.indexOf('M') == -1 && duration.indexOf('S') == -1) {
+            a = [a[0], 0, 0];
+        }
+
+        duration = 0;
+
+        if (a.length == 3) {
+            duration = duration + parseInt(a[0]) * 3600;
+            duration = duration + parseInt(a[1]) * 60;
+            duration = duration + parseInt(a[2]);
+        }
+
+        if (a.length == 2) {
+            duration = duration + parseInt(a[0]) * 60;
+            duration = duration + parseInt(a[1]);
+        }
+
+        if (a.length == 1) {
+            duration = duration + parseInt(a[0]);
+        }
+        return duration
+    }
 
 }]);
