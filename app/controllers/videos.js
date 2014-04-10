@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Video = mongoose.model('Video');
+    Video = mongoose.model('Video'),
+    CurrentVideo = mongoose.model('CurrentVideo');
 
 
 /**
@@ -51,6 +52,35 @@ exports.add = function(req, res) {
         });
     });
 
+};
+
+exports.addCurrent = function(req, res) {
+    var video = new CurrentVideo(req.body);
+    Video.findOne({_id: req.body._id}, function(err,obj) { obj.remove(); });
+    CurrentVideo.collection.remove(function(err){
+        video.save(function(err) {
+            Video.find().populate('added_by').sort('-vote_count').exec(function(err, videos)
+            {
+                return res.send({
+                    status: 'success',
+                    message: videos
+                });
+            });
+        });
+    });
+};
+
+/**
+ * All videos
+ */
+exports.getCurrent = function(req, res) {
+    CurrentVideo.find().populate('added_by').limit(1).exec(function(err, video)
+    {
+        return res.send({
+            status: 'success',
+            video: video
+        });
+    });
 };
 
 exports.vote = function(req, res) {
