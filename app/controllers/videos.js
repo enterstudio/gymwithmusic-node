@@ -109,7 +109,7 @@ exports.add = function(req, res) {
 
 exports.addCurrent = function(req, res) {
     var video = new CurrentVideo(req.body);
-    //Video.findOne({_id: req.body._id}, function(err,obj) { obj.remove(); });
+    // Video.findOne({_id: req.body._id}, function(err,obj) { obj.remove(); });
     CurrentVideo.collection.remove(function(err){
         SkipVote.collection.remove(function(err){
             video.save(function(err) {

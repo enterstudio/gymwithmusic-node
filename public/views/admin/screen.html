@@ -5,7 +5,7 @@
               <youtube-player id="best-vid" video-id="theBestVideo" style="min-height: 405px; display: block;"></youtube-player>
               <div class="videobar">
                 <p class="lead pull-left">{{global.currentVideo.title || "Er wordt momenteel geen video afgespeeld."}}<br /><small class="" ng-show="global.currentVideo.added_by.name">Toegevoegd door: {{global.currentVideo.added_by.name}}</small></p>
-                <p class="lead pull-right">Aantal skip-votes: {{skipVotes.length || 0}} <br /><small>Totaal 5 nodig om te skippen</small></p>
+                <p class="lead pull-right">Aantal skip-votes: {{skipVotes[0] ? skipVotes[0].voters.length : 0}}<br /><small>Totaal 5 nodig om te skippen</small></p>
               </div>
           </section>
       </div>

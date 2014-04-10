@@ -62,7 +62,7 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
 
       $http.post('/skipvotes', vote)
       .success(function(data) {
-        Faye.publish('/skipvotes', data.votes);
+        Faye.publish('/skipVotes', data.votes);
       })
       .error(function(){
         $scope.global.messages.push({ type: 'danger', msg: 'Oeps! Er liep iets fout bij het registreren van je stem.' });

@@ -3,9 +3,6 @@
 //Setting up route
 angular.module('gymwithmusic').config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
-    // For unmatched routes:
-    $urlRouterProvider.otherwise('/');
-
     // states for my app
     $stateProvider
       .state('home', {
@@ -14,8 +11,23 @@ angular.module('gymwithmusic').config(['$stateProvider', '$urlRouterProvider',
     })
       .state('admin host', {
         url: '/admin/screen',
-        templateUrl: '/views/admin/screen.html'
+        templateUrl: '/views/admin/screen.html',
+        data: {
+          rule: function(user) {
+            if(user.admin)
+            {
+              return true;
+            }
+            else
+            {
+              return false;
+            }
+          }
+        }
     });
+
+    // For unmatched routes:
+    $urlRouterProvider.otherwise('/');
 }
 ]);
 

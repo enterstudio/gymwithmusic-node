@@ -1,7 +1,15 @@
 'use strict';
 
-angular.module('gymwithmusic.system').controller('ScreenController', ['$scope', '$http', 'Global', 'Faye', '$youtube', function ($scope, $http, Global, Faye, $youtube) {
+angular.module('gymwithmusic.system').controller('ScreenController', ['$scope', '$http', 'Global', 'Faye', '$youtube', '$location', function ($scope, $http, Global, Faye, $youtube, $location) {
     $scope.global = Global;
+
+    //Get skipvotes
+    (function(){
+      $http.get('/skipvotes').
+      success(function(data) {
+        $scope.skipVotes = data.votes;
+      });
+    })();
 
     //Refresh when current video changes
     Faye.subscribe('/skipVotes', function(votes){
@@ -10,7 +18,7 @@ angular.module('gymwithmusic.system').controller('ScreenController', ['$scope', 
           $scope.skipVotes = votes;
       });
 
-      if(votes.length >= 5)
+      if(votes[0] !== undefined && votes[0].voters.length >= 5)
       {
         newVideo();
         $scope.skipVotes = [];
