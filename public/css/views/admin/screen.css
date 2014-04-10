@@ -17,6 +17,11 @@
   min-height: 60px;
 }
 
+.admin .lead.pull-right
+{
+  text-align: right;
+}
+
 .admin .navbar
 {
   display: none;
@@ -45,7 +50,7 @@
   display: none;
 }
 
-.admin .col-sm-12, .admin .col-xs-12
+.admin .col-sm-12, .admin .col-xs-12, .admin .col-xs-9, .admin .col-xs-3
 {
   padding-right: 0;
   padding-left: 0;
@@ -72,5 +77,24 @@
     display: none; 
 }
 
+.admin .lead
+{
+  font-size: 25px;
+}
+
+.admin .lead.instruction
+{
+  font-size: 35px;
+}
+
+.admin .panel-title
+{
+  font-size: 18px;
+}
+
+.admin section h3
+{
+  font-size: 35px;
+}
 
 
