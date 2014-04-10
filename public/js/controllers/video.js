@@ -97,7 +97,7 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
     $scope.searchYoutube = function(terms)
     {
       if(terms !== '' && terms !== undefined){
-        $http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=viewCount&q='+terms+'&type=video&videoCategoryId=10&videoEmbeddable=true&key=AIzaSyDbhofgKeHR6BvGATtxqGv1WIJMSaCl5sM').
+        $http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=relevance&q='+terms+'&type=video&videoCategoryId=10&videoEmbeddable=true&key=AIzaSyDbhofgKeHR6BvGATtxqGv1WIJMSaCl5sM').
         success(function(data) {
           $scope.searchResults = data.items;
         }).
