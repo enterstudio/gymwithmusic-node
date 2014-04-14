@@ -34,7 +34,7 @@ angular.module('youtube', ['ng']).run(function () {
                 height: this.playerHeight,
                 width: this.playerWidth,
                 videoId: this.videoId,
-                playerVars: { 'controls': 0,'autohide':1,'iv_load_policy':3 },
+                playerVars: { 'autohide':1,'iv_load_policy':3 },
                 events: {
                     onReady: onPlayerReady,
                     onStateChange: onPlayerStateChange
