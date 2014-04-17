@@ -159,3 +159,24 @@ exports.vote = function(req, res) {
         }
     );
 };
+
+exports.delete = function(req, res) {
+    var id = req.params.id;
+
+    Video.remove({ _id: id }, function(err) {
+        if (!err) {
+            Video.find().populate('added_by').sort('-vote_count').exec(function(err, videos)
+            {
+                return res.send({
+                    status: 'success',
+                    videos: videos
+                });
+            });
+        }
+        else {
+            return res.send({
+                status: 'error'
+            });
+        }
+    });
+};

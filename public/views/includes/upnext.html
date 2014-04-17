@@ -8,6 +8,7 @@
         <div class="row no-gutter">
           <div class="col-xs-4">
             <img class="img-responsive" ng-src="{{video.thumbnail}}">  
+            <span ng-show="global.user.admin" style="position: relative; left: 0; bottom: -10px;right: auto; top: auto;font-size: 10px;padding: 5px; background-color: #ff4136; border-color: #ff1103; margin-top: 2px;" class="pull-left upvote glyphicon glyphicon-remove btn btn-primary deleteVideo" ng-click="delete(video._id)"></span>
           </div>
           <div class="col-xs-8">
             <span class="pull-right upvote glyphicon glyphicon-thumbs-up btn btn-primary" 

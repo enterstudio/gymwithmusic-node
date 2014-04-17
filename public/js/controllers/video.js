@@ -188,6 +188,20 @@ angular.module('gymwithmusic.system').controller('VideoController', ['$scope', '
       }
     };
 
+    $scope.delete = function(id)
+    {
+      var data = {
+        videoId: id
+      };
+      $http.delete('/videos/'+id, data)
+      .success(function(data) {
+        Faye.publish('/videos', data.videos);
+      })
+      .error(function(){
+        $scope.global.messages.push({ type: 'danger', msg: 'Er liep iets fout bij het verwijderen van de video.' });
+      });
+    };
+
     $scope.checkIfAdded = function(obj, videoId) {
         var returnKey = -1;
 
