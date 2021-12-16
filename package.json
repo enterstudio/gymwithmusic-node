@@ -14,18 +14,20 @@
   "scripts": {
     "start": "./node_modules/grunt-cli/bin/grunt",
     "test": "./node_modules/grunt-cli/bin/grunt test",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "dependencies": {
-    "assetmanager": "^0.1.1",
+    "assetmanager": "^1.1.0",
     "express": "~3.4.7",
-    "bower": "~1.2.8",
+    "bower": "~1.7.5",
     "grunt-cli": "~0.1.11",
     "connect-mongo": "~0.4.0",
     "connect-flash": "~0.1.1",
     "consolidate": "~0.10.0",
     "swig": "~1.3.2",
-    "mongoose": "~3.8.3",
+    "mongoose": "~5.13.9",
     "passport": "~0.1.18",
     "passport-local": "~0.1.6",
     "passport-facebook": "~1.0.2",
@@ -34,11 +36,12 @@
     "passport-google-oauth": "~0.1.5",
     "passport-linkedin": "~0.1.3",
     "lodash": "~2.4.1",
-    "forever": "~0.10.11",
+    "forever": "~0.15.3",
     "view-helpers": "~0.1.4",
     "mean-logger": "0.0.1",
     "mime": "^1.2.11",
-    "faye": "^1.0.1"
+    "faye": "^1.0.1",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "grunt-env": "~0.4.1",
@@ -63,5 +66,6 @@
     "karma-phantomjs-launcher": "~0.1.0",
     "supertest": "0.8.2",
     "should": "2.1.1"
-  }
+  },
+  "snyk": true
 }
